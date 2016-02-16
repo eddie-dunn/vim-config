@@ -1,8 +1,8 @@
 "Map leader and localleader key to comma
-let mapleader = ","
-let g:mapleader = ","
-let maplocalleader = ","
-let g:maplocalleader = ","
+" let mapleader = " "
+let g:mapleader = " "
+" let maplocalleader = " "
+let g:maplocalleader = " "
 
 " <Leader>2: Toggle Tagbar
 nnoremap <silent> <Leader>2 :TagbarToggle<cr>
@@ -234,3 +234,77 @@ inoremap <C-U> <C-G>u<C-U>
 " Use <localleader>r (by default <\-r>) for renaming
 nnoremap <silent> <buffer> <localleader>r :call jedi#rename()<cr>
 " etc.
+"
+
+" User modified key mappings
+" ==========================
+
+" Save on <leader>w
+nnoremap <Leader>w :w<CR>
+
+" More copy pasta commands
+" "+Y = copy line to system clipboard
+" "+y = copy selection to system clipboard
+map <C-c> "+y<CR>
+
+
+" Reload Vimrc
+map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+
+
+" allow toggling between tab modes
+if !exists("*TabToggle")
+    function TabToggle()
+        if &expandtab
+            set shiftwidth=4
+            set softtabstop=0
+            set noexpandtab
+        else
+            set shiftwidth=4
+            set softtabstop=4
+            set expandtab
+        endif
+    endfunction
+endif
+nmap <F9> mz:execute TabToggle()<CR>'z
+
+" Remove trailing whitespace on F5
+nnoremap <silent> <F5> :%s/\s\+$//<cr>:let @/=''<CR>
+
+
+"
+" Window splits
+" -------------
+"
+" Split window veritcally
+nmap <silent><Leader>v :winc v<CR>
+nmap <silent><Leader>e :winc v<CR>
+" Split window horizontally
+nmap <silent><Leader>o :winc s<CR>
+
+" ctrl-jklm  changes to that split
+map <leader>j <c-w>j
+map <leader>k <c-w>k
+map <leader>l <c-w>l
+map <leader>h <c-w>h
+
+" Cycle between windows with leader-Tab
+" nnoremap <Leader><TAB> <C-w><C-w>
+
+" move splits
+nnoremap <Leader>H <C-w>H
+nnoremap <Leader>J <C-w>J
+nnoremap <Leader>K <C-w>K
+nnoremap <Leader>L <C-w>L
+
+"
+" Sudo
+" ====
+"
+" sudo write this for when we forget to use sudo to open/edit a file
+cmap W! w !sudo tee % >/dev/null
+cmap w!! w !sudo tee % >/dev/null
+
+" GVim toolbar
+" ============
+nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>

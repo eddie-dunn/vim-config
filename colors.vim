@@ -37,9 +37,15 @@ else
 endif
 
 if has('gui_running')
-  set guifont=Inconsolata-dz\ for\ Powerline:h11
-  set transparency=5        " set transparent window
-  set guioptions=egmrt  " hide the gui menubar
+  " set guifont=Inconsolata-dz\ for\ Powerline:h11
+  set guifont=Source\ Code\ Pro\ Medium\ 11
+  " set transparency=5        " set transparent window
+  " set guioptions=egmrt  " hide the gui menubar
+  set guioptions-=T  "remove toolbar
+  set guioptions-=r  "remove right-hand scroll bar
+  set guioptions-=L  "remove left-hand scroll bar
+  set guioptions-=e  "remove GUI tab-bar, run `set go+=m to enable`
+  set guioptions-=m  "remove GUI menu bar
 else
   " Spelling highlights. Use underline in term to prevent cursorline highlights
   " from interfering
