@@ -9,6 +9,8 @@ augroup MyAutoCmd
   autocmd BufWinLeave * if &modifiable && &ft!='unite' | call clearmatches() | endif
 augroup END
 
+set colorcolumn=80      " Show colored column at 80 chars
+
 
 " highlight current line
 au WinLeave * set nocursorline nocursorcolumn
